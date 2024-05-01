@@ -1,0 +1,52 @@
+2024-05-01 18:47:27,203 - Main - DEBUG - Location: Maun_Tower | Lon: 23.55 | Lat: -19.9 | Buffered Bounds: (23.537185096037515, -19.912143800114997, 23.562855359112216, -19.887851530965495)
+2024-05-01 18:47:27,204 - Main - DEBUG - Image shape at 300 m to a area of (1350m * 1350m) resolution: (9, 9) pixels
+2024-05-01 18:47:29,064 - Main - DEBUG - Found 15 products in ('2016-06-01T00:00:00', '2016-06-30T23:59:59') at Maun_Tower
+2024-05-01 18:47:46,647 - Main - DEBUG - Location 1 Saved 0 Images and 0 AOD Points
+2024-05-01 18:47:46,934 - Main - DEBUG - Location: Osaka | Lon: 135.590633 | Lat: 34.650933 | Buffered Bounds: (135.57598566045667, 34.63878919884277, 135.60532732469386, 34.6630814690345)
+2024-05-01 18:47:46,934 - Main - DEBUG - Image shape at 300 m to a area of (1350m * 1350m) resolution: (9, 9) pixels
+2024-05-01 18:47:53,896 - Main - DEBUG - Found 3 products in ('2016-04-01T00:00:00', '2016-04-30T23:59:59') at Osaka
+2024-05-01 18:48:02,527 - Main - DEBUG - Found 17 products in ('2016-05-01T00:00:00', '2016-05-31T23:59:59') at Osaka
+2024-05-01 18:48:22,820 - Main - DEBUG - Found 17 products in ('2016-06-01T00:00:00', '2016-06-30T23:59:59') at Osaka
+2024-05-01 18:49:04,186 - Main - DEBUG - Location: Maun_Tower | Lon: 23.55 | Lat: -19.9 | Buffered Bounds: (23.537185096037515, -19.912143800114997, 23.562855359112216, -19.887851530965495)
+2024-05-01 18:49:04,186 - Main - DEBUG - Image shape at 300 m to a area of (1350m * 1350m) resolution: (9, 9) pixels
+2024-05-01 18:49:06,109 - Main - DEBUG - Found 15 products in ('2016-06-01T00:00:00', '2016-06-30T23:59:59') at Maun_Tower
+2024-05-01 18:50:25,668 - Main - DEBUG - Location: Maun_Tower | Lon: 23.55 | Lat: -19.9 | Buffered Bounds: (23.537185096037515, -19.912143800114997, 23.562855359112216, -19.887851530965495)
+2024-05-01 18:50:25,668 - Main - DEBUG - Image shape at 300 m to a area of (1350m * 1350m) resolution: (9, 9) pixels
+2024-05-01 18:50:28,180 - Main - DEBUG - Found 15 products in ('2016-06-01T00:00:00', '2016-06-30T23:59:59') at Maun_Tower
+2024-05-01 18:51:03,693 - Main - DEBUG - Location: Maun_Tower | Lon: 23.55 | Lat: -19.9 | Buffered Bounds: (23.537185096037515, -19.912143800114997, 23.562855359112216, -19.887851530965495)
+2024-05-01 18:51:03,693 - Main - DEBUG - Image shape at 300 m to a area of (1350m * 1350m) resolution: (9, 9) pixels
+2024-05-01 18:51:05,624 - Main - DEBUG - Found 15 products in ('2016-06-01T00:00:00', '2016-06-30T23:59:59') at Maun_Tower
+2024-05-01 18:51:20,964 - Main - DEBUG - Location: Osaka | Lon: 135.590633 | Lat: 34.650933 | Buffered Bounds: (135.57598566045667, 34.63878919884277, 135.60532732469386, 34.6630814690345)
+2024-05-01 18:51:20,964 - Main - DEBUG - Image shape at 300 m to a area of (1350m * 1350m) resolution: (9, 9) pixels
+2024-05-01 18:51:24,435 - Main - DEBUG - Found 3 products in ('2016-04-01T00:00:00', '2016-04-30T23:59:59') at Osaka
+2024-05-01 18:51:29,932 - Main - DEBUG - Found 17 products in ('2016-05-01T00:00:00', '2016-05-31T23:59:59') at Osaka
+2024-05-01 18:51:48,482 - Main - DEBUG - Found 17 products in ('2016-06-01T00:00:00', '2016-06-30T23:59:59') at Osaka
+2024-05-01 18:52:08,458 - Main - DEBUG - Found 18 products in ('2016-07-01T00:00:00', '2016-07-31T23:59:59') at Osaka
+2024-05-01 18:52:34,022 - Main - DEBUG - Found 17 products in ('2016-08-01T00:00:00', '2016-08-31T23:59:59') at Osaka
+2024-05-01 18:52:55,115 - Main - DEBUG - Found 16 products in ('2016-09-01T00:00:00', '2016-09-30T23:59:59') at Osaka
+2024-05-01 18:53:13,060 - Main - DEBUG - Found 17 products in ('2016-10-01T00:00:00', '2016-10-31T23:59:59') at Osaka
+2024-05-01 18:53:33,561 - Main - DEBUG - Found 17 products in ('2016-11-01T00:00:00', '2016-11-30T23:59:59') at Osaka
+2024-05-01 18:53:57,096 - Main - DEBUG - Found 17 products in ('2016-12-01T00:00:00', '2016-12-31T23:59:59') at Osaka
+2024-05-01 18:54:43,763 - Main - DEBUG - Location 2 Saved 69 Images and 69 AOD Points
+2024-05-01 18:54:44,623 - Main - DEBUG - Location: Shirahama | Lon: 135.356917 | Lat: 33.69345 | Buffered Bounds: (135.34243489276213, 33.68130619886694, 135.37144554528157, 33.705598469034506)
+2024-05-01 18:54:44,623 - Main - DEBUG - Image shape at 300 m to a area of (1350m * 1350m) resolution: (9, 9) pixels
+2024-05-01 18:54:47,154 - Main - DEBUG - Found 3 products in ('2016-04-01T00:00:00', '2016-04-30T23:59:59') at Shirahama
+2024-05-01 18:54:50,905 - Main - DEBUG - Found 17 products in ('2016-05-01T00:00:00', '2016-05-31T23:59:59') at Shirahama
+2024-05-01 18:55:08,851 - Main - DEBUG - Found 17 products in ('2016-06-01T00:00:00', '2016-06-30T23:59:59') at Shirahama
+2024-05-01 18:55:26,645 - Main - DEBUG - Found 17 products in ('2016-11-01T00:00:00', '2016-11-30T23:59:59') at Shirahama
+2024-05-01 18:55:44,739 - Main - DEBUG - Found 17 products in ('2016-12-01T00:00:00', '2016-12-31T23:59:59') at Shirahama
+2024-05-01 18:56:07,327 - Main - DEBUG - Location 3 Saved 14 Images and 14 AOD Points
+2024-05-01 18:56:07,614 - Main - DEBUG - Location: BSRN_BAO_Boulder | Lon: -105.006033 | Lat: 40.045183 | Buffered Bounds: (-105.021772678072, 40.033039198695086, -104.9902427193088, 40.0573314690345)
+2024-05-01 18:56:07,614 - Main - DEBUG - Image shape at 300 m to a area of (1350m * 1350m) resolution: (9, 9) pixels
+2024-05-01 18:56:12,291 - Main - DEBUG - Found 3 products in ('2016-04-01T00:00:00', '2016-04-30T23:59:59') at BSRN_BAO_Boulder
+2024-05-01 18:56:15,900 - Main - DEBUG - Found 20 products in ('2016-05-01T00:00:00', '2016-05-31T23:59:59') at BSRN_BAO_Boulder
+2024-05-01 18:56:37,235 - Main - DEBUG - Found 19 products in ('2016-06-01T00:00:00', '2016-06-30T23:59:59') at BSRN_BAO_Boulder
+2024-05-01 18:57:01,092 - Main - DEBUG - Found 19 products in ('2016-07-01T00:00:00', '2016-07-31T23:59:59') at BSRN_BAO_Boulder
+2024-05-01 18:57:20,381 - Main - DEBUG - Location: Kanpur | Lon: 80.231639 | Lat: 26.512778 | Buffered Bounds: (80.21817347364426, 26.500634199033048, 80.24514759543435, 26.5249264690345)
+2024-05-01 18:57:20,381 - Main - DEBUG - Image shape at 300 m to a area of (1350m * 1350m) resolution: (9, 9) pixels
+2024-05-01 18:57:25,680 - Main - DEBUG - Found 3 products in ('2016-04-01T00:00:00', '2016-04-30T23:59:59') at Kanpur
+2024-05-01 18:57:29,135 - Main - DEBUG - Found 15 products in ('2016-05-01T00:00:00', '2016-05-31T23:59:59') at Kanpur
+2024-05-01 18:57:46,347 - Main - DEBUG - Found 15 products in ('2016-06-01T00:00:00', '2016-06-30T23:59:59') at Kanpur
+2024-05-01 18:58:02,401 - Main - DEBUG - Found 16 products in ('2016-07-01T00:00:00', '2016-07-31T23:59:59') at Kanpur
+2024-05-01 18:58:18,421 - Main - DEBUG - Found 16 products in ('2016-08-01T00:00:00', '2016-08-31T23:59:59') at Kanpur
+2024-05-01 18:58:35,129 - Main - DEBUG - Found 15 products in ('2016-09-01T00:00:00', '2016-09-30T23:59:59') at Kanpur
