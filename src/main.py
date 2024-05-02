@@ -78,9 +78,9 @@ for row in input_df.itertuples():
                             list.append(filename)
                         results_AOD.append(AOD_Data_TS)
 
-    if exists_aod_data(AOD_Data_TS):
+    if exists_aod_data(results_AOD):
         flaten_results_AOD = [item for sublist in results_AOD for item in sublist]
-        data = download_all_requests(config=config, requests_list=requests_Sentinel, show_progress=True, max_threads=5)
+        data = download_all_requests(config=config, requests_list=requests_Sentinel, show_progress=True ,max_threads=5)
 
         if os.path.exists(OUTPUT):
             existing_data = pd.read_csv(OUTPUT, index_col=0)
@@ -95,4 +95,4 @@ for row in input_df.itertuples():
             new_data = new_data.loc[:, ~new_data.columns.duplicated()]
             new_data.to_csv(OUTPUT)
 
-        LOGGER.debug(f"Location {curr} Saved {len(data)} Images and {len(results_AOD)} AOD Points")
+        LOGGER.debug(f"Location {curr} Saved {len(data)} Images and {len(flaten_results_AOD)} AOD Points")
