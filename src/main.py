@@ -1,12 +1,18 @@
 from pprint import pprint
+from urllib.error import HTTPError
+
 import pandas as pd
-from sentinelhub import (SentinelHubCatalog, DataCollection, CRS, BBox, SHConfig, bbox_to_dimensions)
+from sentinelhub import (SentinelHubCatalog, DataCollection, CRS, BBox, bbox_to_dimensions)
 import tempo
-from utils import Print_Progress, get_config, gee_auth_init, irange, \
+from utils import Print_Progress, gee_auth_init, irange, \
     exists_image, Request_AOD, exists_aod_data, get_all_bands_extra_request, get_formated_time, \
     get_formated_filename, download_all_requests, bounds, get_shconfig
 import log
 from constants import *
+
+from concurrent.futures import ThreadPoolExecutor
+
+client = ThreadPoolExecutor(max_workers=12)
 
 # Init Logger
 LOGGER = log.get_logger("Main")
@@ -21,6 +27,8 @@ config = get_shconfig(PROFILE)
 catalog = SentinelHubCatalog(config=config)
 
 input_df = pd.read_csv(INPUT)
+if ALREADY_PROCESSED > 0:
+    input_df = input_df[ALREADY_PROCESSED:]
 
 # Progress
 curr, total = 0, input_df.shape[0]
@@ -28,6 +36,7 @@ curr, total = 0, input_df.shape[0]
 for row in input_df.itertuples():
     curr = curr + 1
 
+    futures = []
     results_AOD = []
     requests_Sentinel = []
     locationName, lon, lat = row.name, row.longitude, row.latitude
@@ -42,7 +51,8 @@ for row in input_df.itertuples():
     # Check all months
     for i in irange(JAN, DEZ):
         Print_Progress(i, curr, total)
-        # If location has data in that month
+        # Trying to parallel localy with dask
+
         if row[i + 4]:
 
             time_interval = tempo.Create_Month_Interval(YEAR, i)
@@ -62,26 +72,36 @@ for row in input_df.itertuples():
 
                 for timestamp in time_interval_hour:
                     interval = tempo.Time_Interval(timestamp)
-                    AOD_Data_TS = Request_AOD(AOD_URL, row.name, interval[0], interval[1])
 
-                    # If there exists valid data
-                    if exists_aod_data(AOD_Data_TS):
-                        start_time, end_time = get_formated_time(interval)
-                        filename = get_formated_filename(locationName, lon, lat, SAT_PROCESS_NAME_S3OLCI_L1_FR, start_time, end_time)
+                    future = client.submit(Request_AOD, AOD_URL, row.name, interval, lon, lat)
+                    futures.append(future)
 
-                        request_all_bands = get_all_bands_extra_request(config, start_time, end_time, aoi_bbox, aoi_size)
-                        request_all_bands.download_list[0].filename = filename
-                        requests_Sentinel.append(request_all_bands.download_list[0])
+    future_results_list = [future.result() for future in futures]
 
-                        # Safe data for output and download lists
-                        for list in AOD_Data_TS:
-                            list.append(filename)
-                        results_AOD.append(AOD_Data_TS)
+    for AOD_Data_TS, locationName, lon, lat, interval in future_results_list:
+        # If there exists valid data
+        if exists_aod_data(AOD_Data_TS):
+            start_time, end_time = get_formated_time(interval)
+            filename = get_formated_filename(locationName, lon, lat, SAT_PROCESS_NAME_S3OLCI_L1_FR, start_time, end_time)
+
+            request_all_bands = get_all_bands_extra_request(config, start_time, end_time, aoi_bbox, aoi_size)
+            request_all_bands.download_list[0].filename = filename
+            requests_Sentinel.append(request_all_bands.download_list[0])
+
+            # Safe data for output and download lists
+            for list in AOD_Data_TS:
+                list.append(filename)
+            results_AOD.append(AOD_Data_TS)
 
     if exists_aod_data(results_AOD):
         flaten_results_AOD = [item for sublist in results_AOD for item in sublist]
-        data = download_all_requests(config=config, requests_list=requests_Sentinel, show_progress=True ,max_threads=5)
-
+        try:
+            data = download_all_requests(config=config, requests_list=requests_Sentinel, show_progress=True ,max_threads=4)
+            LOGGER.debug(
+                f"Location Index {curr + ALREADY_PROCESSED} Name {row.name} Saved {len(data)} Images and {len(flaten_results_AOD)} AOD Points")
+        except Exception as e:
+            LOGGER.error(e)
+            LOGGER.error(f"Error during the index  {curr + ALREADY_PROCESSED} partial safe")
         if os.path.exists(OUTPUT):
             existing_data = pd.read_csv(OUTPUT, index_col=0)
             new_data = pd.DataFrame(data=flaten_results_AOD, columns = COLUMNS)
@@ -95,4 +115,5 @@ for row in input_df.itertuples():
             new_data = new_data.loc[:, ~new_data.columns.duplicated()]
             new_data.to_csv(OUTPUT)
 
-        LOGGER.debug(f"Location {curr} Saved {len(data)} Images and {len(flaten_results_AOD)} AOD Points")
+
+

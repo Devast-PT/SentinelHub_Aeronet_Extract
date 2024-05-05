@@ -1,14 +1,15 @@
 copernicus:
   # Information for the collection dataset and profile
-  profile_name: 'cdse'
+  profile_name: 'UET5'
   token_url: "https://identity.dataspace.copernicus.eu/auth/realms/CDSE/protocol/openid-connect/token"
   base_url: "https://sh.dataspace.copernicus.eu"
   # Image settings
   image:
     resolution: 300
     buffer: 1350
-    year: 2016
+    year: 2020
     crs: '4326'
+    already_processed: 0
 aeronet:
   aod:
     url: "https://aeronet.gsfc.nasa.gov/cgi-bin/print_web_data_v3"

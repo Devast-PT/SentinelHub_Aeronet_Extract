@@ -11,11 +11,12 @@ with open('app_config.yml', 'r') as file:
 PROFILE = config['copernicus']['profile_name']
 TOKEN_URL = config['copernicus']['token_url']
 BASE_URL = config['copernicus']['base_url']
-ID = os.environ.get('API_CLIENT_ID')
+ID = os.environ.get('API_ID')
 SECRET = os.environ.get('API_SECRET')
 PROJECT_NAME = os.environ.get('PROJECT_NAME')
 
 # Data/Img Configurations
+ALREADY_PROCESSED = config['copernicus']['image']['already_processed']
 RESOLUTION = config['copernicus']['image']['resolution']
 BUFFER = config['copernicus']['image']['buffer']
 YEAR = config['copernicus']['image']['year']

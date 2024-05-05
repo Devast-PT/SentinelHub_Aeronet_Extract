@@ -12,6 +12,11 @@ LOGGER = log.get_logger(__name__)
 
 
 def Filter_Results(inputList: list) -> list:
+    """
+    Filters results from catalog search API
+    :param inputList:
+    :return: Filtered list (NT for Non-Time Critical)
+    """
     try:
         filtered_results = []
 
@@ -24,17 +29,14 @@ def Filter_Results(inputList: list) -> list:
         LOGGER.error(e)
 
 
-def Print_Progress(month, curr, total):
+def Print_Progress(month: int, curr: int, total: int) -> None:
     percentage = curr / total * 100
     print("\r{} Loading {:.2f}% | Month {}/12 | Location {}/{}".format(SYMBOLS[curr % len(SYMBOLS)], percentage, month,
                                                                        curr, total), end='', flush=True)
 
 
-def get_config(profile, id, secret, token_url, base_url):
-    return config
-
-
-def get_all_bands_extra_request(config, start, end, aoi_bbox, aoi_size):
+def get_all_bands_extra_request(config: SHConfig, start: str, end: str, aoi_bbox: BBox,
+                                aoi_size: tuple[int, int]) -> SentinelHubRequest:
     return SentinelHubRequest(
         data_folder=OUTPUT_FOLDER,
         evalscript=SCRIPT_ALL_BANDS_EXTRA,
@@ -45,7 +47,7 @@ def get_all_bands_extra_request(config, start, end, aoi_bbox, aoi_size):
             )
         ],
         responses=[
-            SentinelHubRequest.output_response("default", MimeType.TIFF),],
+            SentinelHubRequest.output_response("default", MimeType.TIFF), ],
         bbox=aoi_bbox,
         size=aoi_size,
         config=config,
@@ -57,7 +59,9 @@ def gee_auth_init(project_name):
     ee.Initialize(project=project_name)
 
 
-def Request_AOD(url, locName, start, end):
+def Request_AOD(url, locName, interval, lon, lat):
+    start = interval[0]
+    end = interval[1]
     params = {
         'site': locName,
         'year': start.year,
@@ -73,7 +77,7 @@ def Request_AOD(url, locName, start, end):
         'if_no_html': 1
     }
 
-    return fetch_aeronet_data(url, params)
+    return fetch_aeronet_data(url, params), locName, lon, lat, interval
 
 
 def fetch_aeronet_data(aod_url, params):
@@ -99,16 +103,16 @@ def fetch_aeronet_data(aod_url, params):
 
     except Exception as e:
         LOGGER.error(f"Error fetching AERONET data: {e}")
+        LOGGER.error(f"The parameters are: {params}")
+        return []
+
 
 def get_shconfig(profileName: str) -> SHConfig:
-    config = SHConfig("cdse")
-    if config.sh_client_id == "" or config.sh_client_secret == "":
-        print("Warning! To use Sentinel Hub Catalog API, please provide the credentials (client ID and client secret).")
-        config.sh_client_id = ID
-        config.sh_client_secret = SECRET
-        config.sh_token_url = TOKEN_URL
-        config.sh_base_url = BASE_URL
-        config.save("cdse")
+    config = SHConfig()
+    config.sh_client_id = ID
+    config.sh_client_secret = SECRET
+    config.sh_token_url = TOKEN_URL
+    config.sh_base_url = BASE_URL
     return config
 
 

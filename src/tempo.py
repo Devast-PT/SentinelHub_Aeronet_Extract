@@ -39,9 +39,19 @@ def Create_Month_Interval(year: int, month: int) -> tuple:
 
 
 def Create_One_Hour_Interval_On_Data(all_timestamps) -> list:
+    """
+    This function takes a list of all timestamps as input and uses sentinelhub API to creates a list of tuples representing time intervals (start, end) for a TIME DIFFERENCE (default one hour).
+    :param all_timestamps: List of all timestamps.
+    :return: List of tuples time intervals. (start, end)
+    """
     unique_acquisitions = filter_times(all_timestamps, TIME_DIFFERENCE)
     return unique_acquisitions
 
 
 def Time_Interval(timestamp: datetime) -> tuple:
+    """
+    This function takes a datetime and returns a tuple representing a time interval (start, end).
+    :param timestamp: timestamp datetime object.
+    :return: tuple of start and end datetime objects.
+    """
     return timestamp - TIME_DIFFERENCE, timestamp + TIME_DIFFERENCE
